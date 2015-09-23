@@ -1,0 +1,322 @@
+.gameboard {
+  height: 200px;
+}
+
+.scorecard {
+}
+
+body {
+  background-color: red;
+  color: whitesmoke;
+}
+
+table {
+  margin: 0px auto;
+  border-radius: 3px;
+}
+
+td {
+  padding: 8px;
+  border: 1px solid;
+  width: 130px;
+  text-align: center;
+}
+
+.button {
+  text-align: center;
+  width: 75px;
+  height: 75px;
+  border: 3px solid;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yahtzoo {
+
+height: 75px;width: 475px;border: 3px solid;border-radius: 3px;margin: 0px 2px 30px 2px;font-size: 2em;}
+
+.logo {
+  text-align: center;
+  margin: 30px 0px;
+  margin-bottom: 45px;
+}
+
+.big-button-container {
+
+text-align: center;}
+
+.button-wrapper {
+  width: 480px;
+  margin: 0px auto;
+}
+
+button {
+  background-color: red;
+  border-radius: 3px;
+  color: white;
+  font-size: 3em;
+  padding: 15px;
+  vertical-align: center;
+  margin-top: 45px;
+  border: 3px solid white;
+}
+
+div.big-button {
+  background-color: red;
+  border-radius: 3px;
+  color: white;
+  font-size: 3em;
+  /* padding: 15px 175px; */
+  height: 75px;
+  vertical-align: center;
+  margin-top: 45px;
+  border: 3px solid white;
+}
+
+button:hover, .button:hover, .yahtzoo:hover, .die-image:hover, div.big-button:hover {
+  background-color: #FF6363;
+  cursor: pointer;
+}
+
+.die {
+  width: 75px;
+  height: 75px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.die-row {
+  width: 392px;
+  margin: 0px auto 0px auto;
+}
+
+.die-wrapper {
+  margin-top: 30px;
+}
+
+.button-text {
+  /* margin: 0px 0px 0px 0px; */
+  display: table-cell;
+  line-height: normal;
+  vertical-align: middle;
+  text-align: center;
+  display: block;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 4px;
+}
+
+.scorecard-header {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 40px;
+}
+
+
+.die-image{
+  width: 75px;
+  border-radius: 5px;
+  height: 75px;
+}
+
+
+.multiples > p {
+  display: inline;
+}
+
+/*.die-image:hover{
+  opacity: .3;
+}*/
+
+.jquery-disabled {
+  opacity: .3;
+}
+
+.disabled {
+  opacity: .3;
+}
+
+.disabled-score {
+  opacity: .3;
+}
+
+.active {
+      -webkit-box-shadow: 0px 0px 5px 3px rgb(127, 245, 254);
+      -moz-box-shadow: 0px 0px 5px 3px rgba(0,147,158,1);
+      box-shadow: 0px 0px 5px 3px rgb(0, 0, 0);
+}
+
+.yahtzoo-logo {
+  max-height: 100px;
+}
+
+
+th {
+  text-align: center;
+  padding: 5px;
+}
+
+
+table {
+  display: block;
+  -moz-border-radius: 5px;
+}
+
+.current-player {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 60px;
+}
+
+#overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+#modal {
+    position:absolute;
+    background:url(tint20.png) 0 0 repeat;
+    background:rgba(0,0,0,0.2);
+    border-radius:14px;
+    padding:8px;
+}
+
+#content {
+    border-radius:8px;
+    background:#fff;
+    padding:20px;
+}
+
+#close {
+    position:absolute;
+    background:url(close.png) 0 0 no-repeat;
+    width:24px;
+    height:27px;
+    display:block;
+    text-indent:-9999px;
+    top:-7px;
+    right:-7px;
+}
+
+.modal {
+  color: white;
+  border-radius: 3px;
+}
+
+.modal-dialog {
+
+}
+
+.modal-content {
+
+background-color: red;border-radius: 3px;border: 3px solid #fff;}
+
+.modal-header {
+
+border-bottom: none;}
+
+.modal-title {
+
+text-align: center;}
+
+.modal-body {
+
+text-align: center;}
+
+.modal-footer {
+
+padding-top: 0px;text-align: center;border-top: none;}   
+
+.btn-default {
+
+border-color: #fff;}
+
+.btn-primary {
+
+border: 1px solid #595959;background-color: #595959;}
+
+.btn-primary:hover {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #000;
+}
+.btn {
+  border-radius: 3px;
+}
+
+.modal-header > .close {
+
+opacity: .6;text-shadow: none;}
+
+.modal-button-row {
+  text-align: center;
+}
+
+input {
+  color: black;
+  margin-right: 10px;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.modal-body label {
+padding-right: 10px;display: block;text-align: left;}
+
+#leaderboard-submit input, #leaderboard-submit label {
+  display: block;
+  margin: 0px auto;
+  margin-top: 10px;
+  text-align: left;
+  max-width: 160px;
+}
+
+.form-wrapper {
+  width: 160px;
+  margin: 0px auto;
+}
+
+#game-over .textarea {
+  resize: none;
+  color: black;
+}
+
+tbody {
+  border-radius: 3px;
+}
+
+.upper-left {
+
+border-top-left-radius: 3px;}
+
+.upper-right {
+
+border-top-right-radius: 3px;}
+
+.bottom-left {
+
+border-bottom-left-radius: 3px;}
+
+.bottom-right {
+  border-bottom-right-radius: 3px;
+}
+
+table { margin: 0px auto;border-collapse: separate; align-self: center;align-content: center;}
+
+
+
+
+
+

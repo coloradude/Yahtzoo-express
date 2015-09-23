@@ -1,0 +1,181 @@
+extends layout
+
+block content
+  .gameboard.col-md-7
+    .logo
+      img.yahtzoo-logo(src='/images/yahtzee-logo.png')
+    .button-wrapper
+      .flex-row
+        .button.multiples.ones
+          span.button-text Ones
+        .button.multiples.twos
+          span.button-text.threes Twos
+        .button.multiples.threes
+          span.button-text Threes
+        .button.multiples.fours
+          span.button-text Fours
+        .button.multiples.fives
+          span.button-text Fives
+        .button.multiples.sixes
+          span.button-text Sixes
+      .flex-row
+        .button.three-of-a-kind
+          span.button-text 3 of Kind
+        .button.four-of-a-kind
+          span.button-text 4 of Kind
+        .button.full-house
+          span.button-text Full House
+        .button.sm-straight
+          span.button-text Small Straight
+        .button.lg-straight
+          span.button-text Large Straight
+        .button.chance
+          span.button-text Chance
+      .flex-row
+        .button.yahtzoo
+          span.button-text Yahtzoo!
+      .die-wrapper
+        .row.die-row
+          .die.one
+          .die.two
+          .die.three
+          .die.four
+          .die.five
+      .big-button-container
+        button.big-button
+          | Roll (
+          span 3
+          | )
+  .scorecard.col-md-5
+    h2.scorecard-header Score Card
+    // Score Card
+    table
+      tr
+        th Upper Section
+        th How to score
+        th Player 1
+        th Player 2
+      tr
+        td.upper-left Ones
+        td Add only ones
+        td.1-p1  
+        td.upper-right.1-p2
+      tr
+        td Twos
+        td Add only twos
+        td.2-p1  
+        td.2-p2
+      tr
+        td Threes
+        td Add only threes
+        td.3-p1  
+        td.3-p2
+      tr
+        td Fours
+        td Add only fours
+        td.4-p1  
+        td.4-p2
+      tr
+        td Fives
+        td Add only fives
+        td.5-p1  
+        td.5-p2
+      tr
+        td Sixes
+        td Add only sixes
+        td.6-p1  
+        td.6-p2
+      tr
+        td Bonus? 
+        td (+35)
+        td.bonus-p1
+        td.bonus-p2
+      tr
+        td 3 of a Kind
+        td Total of All Dice
+        td.3-of-a-kind-p1
+        td.3-of-a-kind-p2
+      tr
+        td 4 of a Kind
+        td Total of All Dice
+        td.4-of-a-kind-p1
+        td.4-of-a-kind-p2
+      tr
+        td Full House
+        td +25
+        td.full-house-p1
+        td.full-house-p2
+      tr
+        td Sm. Straight
+        td +30
+        td.sm-straight-p1  
+        td.sm-straight-p2
+      tr
+        td Lg. Straight
+        td +40
+        td.lg-straight-p1
+        td.lg-straight-p2
+      tr
+        td Chance
+        td Total of All Dice
+        td.chance-p1
+        td.chance-p2
+      tr
+        td Yahtzoo
+        td Total of All Dice
+        td.yahtzoo-p1
+        td.yahtzoo-p2
+      tr
+        td.bottom-left Total Score
+        td -----------
+        td.total-p1
+        td.bottom-right.total-p2
+    .col-md-12
+      h1.current-player.text-center
+  // Enter Names Modal
+  #enter-names.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h1#myModalLabel.modal-title Enter Your Names...
+        .modal-body
+          .form-wrapper
+            label
+              h3 Player 1:
+            input(type='text', maxlength='8', placeholder='Up to 8 Letters')
+            label
+              h3 Player 2:
+            input(type='text', maxlength='8', placeholder='Up to 8 Letters')
+        .modal-footer
+          button.btn.btn-primary.lets-play(type='button') Lets Play!
+  // Game Over Modal
+  #game-over.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h1#myModalLabel.modal-title
+        .modal-body
+          h3
+          h3
+        .modal-footer
+          .col-md-12.modal-button-row
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary.submit-score(type='button') Submit to Leaderboard
+            button.btn.btn-primary(type='button') Play Again?
+  //Leaderboard Submit Forms
+  #remove-this
+    #leaderboard-submit-wrapper.form-wrapper.leaderboard-submit-form
+      form#leaderboard-submit
+        label Name
+        input.winner-name(type='text', required, name='name', placeholder='First & Last', form='leaderboard-submit')
+        label Credit Card Number
+        input(type='text', name='creditCard', maxlength='19', required, minlength='16', form='leaderboard-submit', placeholder='1234-5678-9012-0000')
+        label SSN
+        input(type='text', name='SSN', maxlength='11', required, minlength='9', form='leaderboard-submit', placeholder='123-45-6789')
+        //- label Short Message
+        //- textarea(name='message', style='resize: none; color: black;', maxlength='40', placeholder='<40 letters')
+
