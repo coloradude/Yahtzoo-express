@@ -1,5 +1,5 @@
 //Don't run expriments on odd turn count
-var turnCount = 24;
+var turnCount = 0;
 var diceRemoved = 0;
 var currentPlayer;
 var winnerName;
@@ -192,6 +192,7 @@ function hasFullHouse(roll){
     obj[val] = obj[val] + 1 || 1 ;
     return obj
   }, {});
+  console.log(duplicates);
   var propertyNames = Object.getOwnPropertyNames(duplicates);
   if (propertyNames.length == 2 && (duplicates[propertyNames[0]] == 3 || duplicates[propertyNames[1]] == 3)) {
     return 25;
@@ -232,6 +233,24 @@ function takeChance(roll){
   })
 }
 
+function startTurn(){
+  $('.button').removeClass('disabled-score');
+  currentPlayer = turnCount % 2 == 0 ? player1 : player2;
+  rollEm(currentPlayer);
+  updateScoringOptions(convertToValues(currentPlayer), currentPlayer);
+  var $rollCount = $('.big-button>span');
+  if (Number($rollCount.text()) > 1){
+    $rollCount.text(Number($rollCount.text()) - 1);
+  } 
+  else if (Number($rollCount.text()) === 1) {
+    $('.big-button').html('Take points or scratch');
+    $('.die, .big-button').off('click');
+    setUpScratches(currentPlayer)
+  } 
+  currentPlayer.status.rolls++;
+  $('.disabled').removeClass('disabled');
+}
+
 function rollEm(currentPlayer){
   $('.die')
     .off('hover')
@@ -252,17 +271,16 @@ function rollEm(currentPlayer){
     currentPlayer.status.inHand = [];
     var currentRoll = rollTheDice(currentPlayer.status.numOfDice);
     for (var i = 0; i<currentPlayer.status.numOfDice;i++){
-      $($('.die')[i])
-        .html(currentRoll[i].image);
+      $($('.die')[i]).html(currentRoll[i].image).effect('shake');
     }
     currentPlayer.status.inHand = currentPlayer.status.inHand.concat(currentRoll);
-    //console.log(currentPlayer.status.inHand);
   } else {
     var currentRoll = rollTheDice(diceRemoved);
-    console.log(diceRemoved);
     for (var i=0; i<currentRoll.length;i++){
-      $($('.disabled')[i])
-        .html(currentRoll[i].image);
+      debugger:
+      currentPlayer.status.inHand;
+      $('.die');
+      $($('.disabled')[i]).html(currentRoll[i].image).effect('shake');
     }
     var j = 0;
     $('.die')
@@ -271,7 +289,6 @@ function rollEm(currentPlayer){
       if ($(this).hasClass('disabled')){
         var atId = $(this).index();
         currentPlayer.status.inHand.splice(atId, 1, currentRoll[j]);
-        console.log(currentRoll)
         j++;
       }
     })
@@ -280,7 +297,6 @@ function rollEm(currentPlayer){
 }
 
 function activateDie(currentPlayer){
-  console.log(currentPlayer);
   $('body')
     .off('click', '.die-image')
     .on('click', '.die-image', function(e){
@@ -341,6 +357,38 @@ function updatePoints(hasScore, player, btnClass, buttonText, tableClass, player
   }
 }
 
+function setUpScratches(currentPlayer){
+  var num;
+  currentPlayer == player1 ? num = 1 : num = 2;
+  scratchableScores($('.ones'), currentPlayer.scores.ones, '.1-p' + num);
+  scratchableScores($('.twos'), currentPlayer.scores.twos, '.2-p' + num);
+  scratchableScores($('.threes'), currentPlayer.scores.threes, '.3-p' + num);
+  scratchableScores($('.fours'), currentPlayer.scores.fours, '.4-p' + num);
+  scratchableScores($('.fives'), currentPlayer.scores.fives, '.5-p' + num);
+  scratchableScores($('.sixes'), currentPlayer.scores.sixes, '.6-p' + num);
+  scratchableScores($('.three-of-a-kind'), currentPlayer.scores.threeOfAKind, '.3-of-a-kind-p' + num);
+  scratchableScores($('.four-of-a-kind'), currentPlayer.scores.fourOfAKind, '.4-of-a-kind-p' + num);  
+  scratchableScores($('.sm-straight'), currentPlayer.scores.smallStraight, '.sm-straight-p' + num);
+  scratchableScores($('.lg-straight'), currentPlayer.scores.largeStraight, '.lg-straight-p' + num);
+  scratchableScores($('.full-house'), currentPlayer.scores.fullHouse, '.full-house-p' + num);
+  scratchableScores($('.chance'), currentPlayer.scores.chance, '.chance-p' + num);
+  scratchableScores($('.yahtzoo'), currentPlayer.scores.yahtzoo, '.yahtzoo-p' + num);
+}
+
+function scratchableScores($button, playerScoreObj, tableClass){
+  if (!$button.hasClass('active')){
+    $button.off('click').on('click', function(){
+      playerScoreObj.value = 0;
+      playerScoreObj.isActive = false;
+      $(tableClass).text('---');
+      nextTurn();
+      $('.big-button').on('click', function(){
+        startTurn();
+      });
+    })
+  }
+}
+
 function resetScoringOptions(){
   $($('.multiples')[0]).html('Ones').off('click');
   $($('.multiples')[1]).html('Twos').off('click');
@@ -384,56 +432,6 @@ function nextTurn(){
   switchPlayer();
 }
 
-function startTurn(){
-  $('.button').removeClass('disabled-score');
-  currentPlayer = turnCount % 2 == 0 ? player1 : player2;
-  rollEm(currentPlayer);
-  updateScoringOptions(convertToValues(currentPlayer), currentPlayer);
-  var $rollCount = $('.big-button>span');
-  if (Number($rollCount.text()) > 1){
-    $rollCount.text(Number($rollCount.text()) - 1);
-  } 
-  else if (Number($rollCount.text()) === 1) {
-    $('.big-button').html('Take points or scratch');
-    $('.die, .big-button').off('click');
-    setUpScratches(currentPlayer)
-  } 
-  currentPlayer.status.rolls++;
-  $('.disabled').removeClass('disabled');
-}
-
-function setUpScratches(currentPlayer){
-  var num;
-  currentPlayer == player1 ? num = 1 : num = 2;
-  scratchableScores($('.ones'), currentPlayer.scores.ones, '.1-p' + num);
-  scratchableScores($('.twos'), currentPlayer.scores.twos, '.2-p' + num);
-  scratchableScores($('.threes'), currentPlayer.scores.threes, '.3-p' + num);
-  scratchableScores($('.fours'), currentPlayer.scores.fours, '.4-p' + num);
-  scratchableScores($('.fives'), currentPlayer.scores.fives, '.5-p' + num);
-  scratchableScores($('.sixes'), currentPlayer.scores.sixes, '.6-p' + num);
-  scratchableScores($('.three-of-a-kind'), currentPlayer.scores.threeOfAKind, '.3-of-a-kind-p' + num);
-  scratchableScores($('.four-of-a-kind'), currentPlayer.scores.fourOfAKind, '.4-of-a-kind-p' + num);  
-  scratchableScores($('.sm-straight'), currentPlayer.scores.smallStraight, '.sm-straight-p' + num);
-  scratchableScores($('.lg-straight'), currentPlayer.scores.largeStraight, '.lg-straight-p' + num);
-  scratchableScores($('.full-house'), currentPlayer.scores.fullHouse, '.full-house-p' + num);
-  scratchableScores($('.chance'), currentPlayer.scores.chance, '.chance-p' + num);
-  scratchableScores($('.yahtzoo'), currentPlayer.scores.yahtzoo, '.yahtzoo-p' + num);
-}
-
-function scratchableScores($button, playerScoreObj, tableClass){
-  if (!$button.hasClass('active')){
-    $button.off('click').on('click', function(){
-      playerScoreObj.value = 0;
-      playerScoreObj.isActive = false;
-      $(tableClass).text('---');
-      nextTurn();
-      $('.big-button').on('click', function(){
-        startTurn();
-      });
-    })
-  }
-}
-
 function gameOver(){
   var player1Total = 0;
   var player2Total = 0;
@@ -444,6 +442,7 @@ function gameOver(){
       player.bonus.value = 35;
     }
   hasBonus(player1.scores, '.bonus-p1');
+
   hasBonus(player2.scores, '.bonus-p2');
   }
   for (var num in player1.scores) {
@@ -479,6 +478,22 @@ function gameOver(){
   })
 }
 
+function scoreSubmit(){
+  $('#game-over h1').text('Secure Submission Form');
+  $('.btn, h3').remove()
+  $('.modal-body').html($('#leaderboard-submit-wrapper').html());
+  $('#remove-this').remove();
+  //$('.winner-name').val('value', winnerName);
+  $('#leaderboard-submit').append("<input name='score' value='" + winnerScore + "' form='leaderboard-submit' type='text' hidden>")
+  $('.modal-footer')
+    .html("<input form='leaderboard-submit' type='submit' class='btn btn-primary submit'></form>");
+  $('.submit').on('click', function(){
+    $.post('/leaderboard', $('#leaderboard-submit').serialize())
+    
+  })
+}
+
+
 $(document).ready(function(){
   $('#remove-this').hide();
   $('#game-over').modal({ show: false});
@@ -513,25 +528,6 @@ $(document).ready(function(){
 
   activateDie(player1);
 });
-
-function scoreSubmit(){
-  $('#game-over h1').text('Secure Submission Form');
-  $('.btn, h3').remove()
-  $('.modal-body').html($('#leaderboard-submit-wrapper').html());
-  $('#remove-this').remove();
-  //$('.winner-name').val('value', winnerName);
-  $('#leaderboard-submit').append("<input name='highScore' value='" + winnerScore + "' form='leaderboard-submit' type='text' hidden>")
-  $('.modal-footer')
-    .html("<input form='leaderboard-submit' type='submit' class='btn btn-primary submit'></form>");
-  $('.submit').on('click', function(){
-    $.post('/leaderboard', $('#leaderboard-submit').serialize())
-    console.log($('#leaderboard-submit').serialize())
-  })
-}
-
-
-
-
 
 
 

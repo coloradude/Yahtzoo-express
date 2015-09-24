@@ -1,5 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require("mongoose")
+
+var userScoreAttr = require("./userScore.js"),
+    userScoreSchema = mongoose.Schema(userScoreAttr);
+
+var Score = mongoose.model('Score', userScoreSchema);
+    mongoose.connect('mongodb://localhost/leaderboard');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,11 +14,23 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/leaderboard', function(req, res){
-  var name = req.body.name[1];
-  var score = req.body.highScore;
-  var creditCard = req.body.creditCard[1];
-  var SSN = req.body.SSN[1];
-  console.log(name, score, creditCard, SSN);
+  console.log(req.body)
+
+  var newScore = new Score({
+
+    name: req.body.name[1],
+    score: req.body.score,
+    creditCard: req.body.creditCard[1],
+    SSN: req.body.SSN[1]
+
+  })
+
+  Score.save(newScore);
+  console.log('sd')
+  //console.log(leaderboard.aggregate([ {$sort: {score: -1}}, {$limit: 10} ]));
+
+  // leaderboard.find({})
+
 })
 
 module.exports = router;
