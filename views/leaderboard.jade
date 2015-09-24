@@ -1,0 +1,9 @@
+div(style='display: inline-block;')
+  table(align='center')
+    tr
+      th Name
+      th Score
+    each player in data
+      tr
+        td=player.name
+        td=player.score

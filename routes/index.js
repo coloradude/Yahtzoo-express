@@ -1,12 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require("mongoose")
+var db = require('monk')('localhost/leaderboard')
+var topScores = db.get('topScores')
 
-var userScoreAttr = require("./userScore.js"),
-    userScoreSchema = mongoose.Schema(userScoreAttr);
-
-var Score = mongoose.model('Score', userScoreSchema);
-    mongoose.connect('mongodb://localhost/leaderboard');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,20 +12,23 @@ router.get('/', function(req, res, next) {
 router.post('/leaderboard', function(req, res){
   console.log(req.body)
 
-  var newScore = new Score({
+  topScores.insert({
 
     name: req.body.name[1],
-    score: req.body.score,
+    score: Number(req.body.score),
     creditCard: req.body.creditCard[1],
     SSN: req.body.SSN[1]
 
+  }, function(err, data){
+    topScores.find({}, {limit : 10, sort: {score:-1}},
+      function(err, data){
+        res.render('leaderboard', {data: data}, function(err, html){
+          console.log(html);
+          res.send(html)
+        });
+    })
   })
 
-  Score.save(newScore);
-  console.log('sd')
-  //console.log(leaderboard.aggregate([ {$sort: {score: -1}}, {$limit: 10} ]));
-
-  // leaderboard.find({})
 
 })
 

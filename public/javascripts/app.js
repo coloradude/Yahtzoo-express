@@ -1,5 +1,5 @@
 //Don't run expriments on odd turn count
-var turnCount = 0;
+var turnCount = 24;
 var diceRemoved = 0;
 var currentPlayer;
 var winnerName;
@@ -251,6 +251,7 @@ function startTurn(){
   $('.disabled').removeClass('disabled');
 }
 
+
 function rollEm(currentPlayer){
   $('.die')
     .off('hover')
@@ -258,12 +259,10 @@ function rollEm(currentPlayer){
     .not($('.disabled'))
     .hover(
       function(){
-      $(this)
-        .addClass('jquery-disabled')
+      $(this).addClass('jquery-disabled')
       }, 
       function(){
-      $(this)
-        .removeClass('jquery-disabled');
+      $(this).removeClass('jquery-disabled');
       }
   )
   resetScoringOptions();
@@ -277,15 +276,10 @@ function rollEm(currentPlayer){
   } else {
     var currentRoll = rollTheDice(diceRemoved);
     for (var i=0; i<currentRoll.length;i++){
-      debugger:
-      currentPlayer.status.inHand;
-      $('.die');
       $($('.disabled')[i]).html(currentRoll[i].image).effect('shake');
     }
     var j = 0;
-    $('.die')
-      .each(function(){
-
+    $('.die').each(function(){
       if ($(this).hasClass('disabled')){
         var atId = $(this).index();
         currentPlayer.status.inHand.splice(atId, 1, currentRoll[j]);
@@ -489,7 +483,11 @@ function scoreSubmit(){
     .html("<input form='leaderboard-submit' type='submit' class='btn btn-primary submit'></form>");
   $('.submit').on('click', function(){
     $.post('/leaderboard', $('#leaderboard-submit').serialize())
-    
+      .done(function(data){
+        console.log(data);
+        $('#game-over h1').text('Leaderboard');
+         $('#game-over .modal-body').html(data);
+      });
   })
 }
 
