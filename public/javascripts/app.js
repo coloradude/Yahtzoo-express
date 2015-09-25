@@ -1,5 +1,5 @@
 //Don't run expriments on odd turn count
-var turnCount = 24;
+var turnCount = 0;
 var diceRemoved = 0;
 var currentPlayer;
 var winnerName;
