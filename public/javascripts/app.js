@@ -253,41 +253,50 @@ function startTurn(){
 
 
 function rollEm(currentPlayer){
-  $('.die')
-    .off('hover')
-    .removeClass('jquery-disabled')
-    .not($('.disabled'))
-    .hover(
-      function(){
+  $('.die').off('hover').removeClass('jquery-disabled');
+  $('.die').not($('.disabled')).hover(
+    function(){
       $(this).addClass('jquery-disabled')
-      }, 
-      function(){
+    }, 
+    function(){
       $(this).removeClass('jquery-disabled');
-      }
+    }
   )
   resetScoringOptions();
   if (currentPlayer.status.rolls === 0 || !$('.die').hasClass('disabled')){
     currentPlayer.status.inHand = [];
     var currentRoll = rollTheDice(currentPlayer.status.numOfDice);
     for (var i = 0; i<currentPlayer.status.numOfDice;i++){
-      $($('.die')[i]).html(currentRoll[i].image).effect('shake');
+      $($('.die')[i]).html(currentRoll[i].image);
     }
+    $('.die').effect('shake')
     currentPlayer.status.inHand = currentPlayer.status.inHand.concat(currentRoll);
+    //console.log(currentPlayer.status.inHand);
   } else {
     var currentRoll = rollTheDice(diceRemoved);
+    console.log(diceRemoved);
     for (var i=0; i<currentRoll.length;i++){
-      $($('.disabled')[i]).html(currentRoll[i].image).effect('shake');
+      $($('.disabled')[i]).html(currentRoll[i].image);
     }
     var j = 0;
     $('.die').each(function(){
+
       if ($(this).hasClass('disabled')){
         var atId = $(this).index();
         currentPlayer.status.inHand.splice(atId, 1, currentRoll[j]);
+        console.log(currentRoll)
         j++;
       }
     })
+    $('.disabled').effect('shake')
   }
   diceRemoved = 0;
+  if (turnCount < 2){
+    $('.die-image').tooltip({placement: 'top', title: 'Click to remove', trigger: 'hover'})
+  }
+  if (turnCount == 2){
+    $('.die').tooltip('hide');
+  }
 }
 
 function activateDie(currentPlayer){
@@ -469,7 +478,10 @@ function gameOver(){
   $(document).off('keydown');
   $('.submit-score').on('click', function(){
     scoreSubmit()
-  })
+  });
+  $('#refresh').on('click', function(){
+    location.reload();
+  });
 }
 
 function scoreSubmit(){
@@ -483,12 +495,11 @@ function scoreSubmit(){
     .html("<input form='leaderboard-submit' type='submit' class='btn btn-primary submit'></form>");
   $('.submit').on('click', function(){
     $.post('/leaderboard', $('#leaderboard-submit').serialize())
-      .done(function(data){
-        console.log(data);
+      .done(function(leaderboard){
         $('#game-over h1').text('Leaderboard');
-         $('#game-over .modal-body').html(data);
+         $('#game-over .modal-body').html(leaderboard);
       });
-  })
+  });
 }
 
 
@@ -525,6 +536,9 @@ $(document).ready(function(){
   });
 
   activateDie(player1);
+  $(function () {
+        $("[rel='tooltip']").tooltip();
+    });
 });
 
 
