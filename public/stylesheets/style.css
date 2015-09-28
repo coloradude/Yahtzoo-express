@@ -452,6 +452,13 @@ table { margin: 0px auto;border-collapse: separate; align-self: center;align-con
   .flex-row {
     margin: 2px;
   }
+  .current-player {
+
+  font-size: 30px;margin-top: 20px;}
+  .yahtzoo-logo {
+    max-height: 70px;
+    margin: 0px auto;
+  }
 }
 
 
