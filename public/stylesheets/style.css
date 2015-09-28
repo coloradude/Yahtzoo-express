@@ -175,7 +175,7 @@ button:hover, .button:hover{
 .active {
       -webkit-box-shadow: 0px 0px 5px 3px rgb(127, 245, 254);
       -moz-box-shadow: 0px 0px 5px 3px rgba(0,147,158,1);
-      box-shadow: 0px 0px 5px 3px rgb(52, 152, 219);
+      box-shadow: 0px 0px 3px 5px rgb(52, 152, 219);
 }
 
 .yahtzoo-logo {
@@ -422,12 +422,15 @@ table { margin: 0px auto;border-collapse: separate; align-self: center;align-con
   }
   .die-row {
     width: 100%;
+    border-radius: 3px;
   }
   .die {
     width: 20%;
+    border-radius: 3px;
   }
   .die-image {
     width: 100%;
+    border-radius: 3px;
   }
   div {
     font-size: 10px;
@@ -437,6 +440,17 @@ table { margin: 0px auto;border-collapse: separate; align-self: center;align-con
     width: 120%;
     margin: 0 0 30px 0;
     border: 1px solid #fff;
+  }
+  .logo {
+    margin-top: 0px;
+  }
+  .active {
+        -webkit-box-shadow: 0px 0px 5px 3px rgb(52, 152, 219);
+      -moz-box-shadow: 0px 0px 5px 3px rgba(0,147,158,1);
+    box-shadow: 0px 0px 1px 2px rgb(52, 152, 219);
+  }
+  .flex-row {
+    margin: 2px;
   }
 }
 
