@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('monk')('localhost/leaderboard')
+var db = require('monk')(process.env.MONGOLAB_URI || "mongodb://localhost/db-name")
 var topScores = db.get('topScores')
 
 
