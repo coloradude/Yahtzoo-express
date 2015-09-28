@@ -443,6 +443,7 @@ table { margin: 0px auto;border-collapse: separate; align-self: center;align-con
   }
   .logo {
     margin-top: 0px;
+    margin-bottom: 20px;
   }
   .active {
         -webkit-box-shadow: 0px 0px 5px 3px rgb(52, 152, 219);
