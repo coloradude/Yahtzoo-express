@@ -506,7 +506,7 @@ function scoreSubmit(){
   $('.btn, h3').remove()
   $('.modal-body').html($('#leaderboard-submit-wrapper').html());
   $('#remove-this').remove();
-  $('.winner-name').val('value', winnerName);
+  $('.winner-name').val(winnerName);
   $('#leaderboard-submit')
     .append("<input name='score' value='" + winnerScore + "' form='leaderboard-submit' type='text' hidden>")
   $('.modal-footer')
