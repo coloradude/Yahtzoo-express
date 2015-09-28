@@ -404,5 +404,58 @@ table { margin: 0px auto;border-collapse: separate; align-self: center;align-con
   margin: 0px auto;
 }
 
+@media (max-width: 480px){
+  .button-wrapper {
+    width: 110%;
+  }
+  .table-wrapper {
+    width: 110%;
+  }
+  .big-button {
+    width: 100%;
+    border: 1px solid #fff;
+  }
+  .button {
+    height: 55px;
+    margin: 0px 1px;
+    border: 1px solid #fff;
+  }
+  .die-row {
+    width: 100%;
+  }
+  .die {
+    width: 20%;
+  }
+  .die-image {
+    width: 100%;
+  }
+  div {
+    font-size: 10px;
+    font-weight: 200;
+  }
+  .yahtzoo {
+    width: 120%;
+    margin: 0 0 30px 0;
+    border: 1px solid #fff;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
