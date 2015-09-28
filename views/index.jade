@@ -4,7 +4,7 @@ block content
   .gameboard.col-md-7.col-xs-12
     .logo
       img.yahtzoo-logo(src='/images/rsz_yahtzee_logo.png')
-    .button-wrapper.col-xs-12
+    .button-wrapper
       .flex-row
         .button.multiples.ones
           span.button-text Ones
@@ -52,87 +52,88 @@ block content
   .scorecard.col-md-5.col-xs-12
     h2.scorecard-header Score Card
     // Score Card
-    table
-      tr
-        th Upper Section
-        th How to score
-        th Player 1
-        th Player 2
-      tr
-        td.upper-left Ones
-        td Add only ones
-        td.1-p1  
-        td.upper-right.1-p2
-      tr
-        td Twos
-        td Add only twos
-        td.2-p1  
-        td.2-p2
-      tr
-        td Threes
-        td Add only threes
-        td.3-p1  
-        td.3-p2
-      tr
-        td Fours
-        td Add only fours
-        td.4-p1  
-        td.4-p2
-      tr
-        td Fives
-        td Add only fives
-        td.5-p1  
-        td.5-p2
-      tr
-        td Sixes
-        td Add only sixes
-        td.6-p1  
-        td.6-p2
-      tr
-        td Bonus? 
-        td (+35)
-        td.bonus-p1
-        td.bonus-p2
-      tr
-        td 3 of a Kind
-        td Total of All Dice
-        td.3-of-a-kind-p1
-        td.3-of-a-kind-p2
-      tr
-        td 4 of a Kind
-        td Total of All Dice
-        td.4-of-a-kind-p1
-        td.4-of-a-kind-p2
-      tr
-        td Full House
-        td +25
-        td.full-house-p1
-        td.full-house-p2
-      tr
-        td Sm. Straight
-        td +30
-        td.sm-straight-p1  
-        td.sm-straight-p2
-      tr
-        td Lg. Straight
-        td +40
-        td.lg-straight-p1
-        td.lg-straight-p2
-      tr
-        td Chance
-        td Total of All Dice
-        td.chance-p1
-        td.chance-p2
-      tr
-        td Yahtzoo
-        td Total of All Dice
-        td.yahtzoo-p1
-        td.yahtzoo-p2
-      tr
-        td.bottom-left Total Score
-        td -----------
-        td.total-p1
-        td.bottom-right.total-p2
+    .table-wrapper
+      table
+        tr
+          th Upper Section
+          th How to score
+          th Player 1
+          th Player 2
+        tr
+          td.upper-left Ones
+          td Add only ones
+          td.1-p1  
+          td.upper-right.1-p2
+        tr
+          td Twos
+          td Add only twos
+          td.2-p1  
+          td.2-p2
+        tr
+          td Threes
+          td Add only threes
+          td.3-p1  
+          td.3-p2
+        tr
+          td Fours
+          td Add only fours
+          td.4-p1  
+          td.4-p2
+        tr
+          td Fives
+          td Add only fives
+          td.5-p1  
+          td.5-p2
+        tr
+          td Sixes
+          td Add only sixes
+          td.6-p1  
+          td.6-p2
+        tr
+          td Bonus? 
+          td (+35)
+          td.bonus-p1
+          td.bonus-p2
+        tr
+          td 3 of a Kind
+          td Total of All Dice
+          td.3-of-a-kind-p1
+          td.3-of-a-kind-p2
+        tr
+          td 4 of a Kind
+          td Total of All Dice
+          td.4-of-a-kind-p1
+          td.4-of-a-kind-p2
+        tr
+          td Full House
+          td +25
+          td.full-house-p1
+          td.full-house-p2
+        tr
+          td Sm. Straight
+          td +30
+          td.sm-straight-p1  
+          td.sm-straight-p2
+        tr
+          td Lg. Straight
+          td +40
+          td.lg-straight-p1
+          td.lg-straight-p2
+        tr
+          td Chance
+          td Total of All Dice
+          td.chance-p1
+          td.chance-p2
+        tr
+          td Yahtzoo
+          td Total of All Dice
+          td.yahtzoo-p1
+          td.yahtzoo-p2
+        tr
+          td.bottom-left Total Score
+          td -----------
+          td.total-p1
+          td.bottom-right.total-p2
   // Enter Names Modal
   #enter-names.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
     .modal-dialog(role='document')

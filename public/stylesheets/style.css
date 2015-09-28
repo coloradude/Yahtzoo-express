@@ -11,7 +11,7 @@
 }
 
 .scorecard {
-width: 520px;}
+margin: 0px auto;}
 
 body {
   background-color: #F44336;
@@ -399,8 +399,10 @@ table { margin: 0px auto;border-collapse: separate; align-self: center;align-con
   animation-name: shake;
 }
 
-.close {
-  
+.table-wrapper {
+  width: 520px;
+  margin: 0px auto;
 }
+
 
 
