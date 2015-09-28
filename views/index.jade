@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .gameboard.col-md-7.col-sm-12
+  .gameboard.col-md-7.col-xs-12
     .logo
       img.yahtzoo-logo(src='/images/rsz_yahtzee_logo.png')
     .button-wrapper
@@ -46,7 +46,10 @@ block content
           | Roll (
           span 3
           | )
-  .scorecard.col-md-5
+    .col-md-12.col-xs-12
+      h1.current-player.text-center
+  .clearfix.visible-xs
+  .scorecard.col-md-5.col-xs-12
     h2.scorecard-header Score Card
     // Score Card
     table
@@ -130,8 +133,6 @@ block content
         td -----------
         td.total-p1
         td.bottom-right.total-p2
-    .col-md-12
-      h1.current-player.text-center
   // Enter Names Modal
   #enter-names.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
     .modal-dialog(role='document')

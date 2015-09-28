@@ -8,7 +8,6 @@
 }
 
 .gameboard {
-  height: 200px;
 }
 
 .scorecard {
@@ -198,7 +197,7 @@ table {
 
 .current-player {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 50px;
   font-size: 60px;
 }
 
@@ -403,7 +402,5 @@ table { margin: 0px auto;border-collapse: separate; align-self: center;align-con
 .close {
   
 }
-
-
 
 
