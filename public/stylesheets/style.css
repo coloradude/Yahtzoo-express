@@ -93,7 +93,7 @@ button:hover, .button:hover, .yahtzoo:hover, .die-image:hover, .big-button:hover
 }
 
 button:hover, .button:hover{
-  background-color: #EF9A9A;
+  background-color: #FF6363;
   color: #424242;
   border: 2px solid #424242;
 }
